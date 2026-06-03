@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-depl
+  namespace: food
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payment
+  template:
+    metadata:
+      labels:
+        app: payment
+    spec:
+      containers:
+        - name: payment
+          image: beltawn3507/food_payment
+          envFrom:
+            - secretRef:
+                name: payment-secret
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "300m"
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: payment-srv
+  namespace: food
+spec:
+  selector:
+    app: payment
+  ports:
+    - name: payment
+      protocol: TCP
+      port: 5002
+      targetPort: 5002

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rider-depl
+  namespace: food
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rider
+  template:
+    metadata:
+      labels:
+        app: rider
+    spec:
+      containers:
+        - name: rider
+          image: beltawn3507/food_rider
+          envFrom:
+            - secretRef:
+                name: rider-secret
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "300m"
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rider-srv
+  namespace: food
+spec:
+  selector:
+    app: rider
+  ports:
+    - name: rider
+      protocol: TCP
+      port: 5005
+      targetPort: 5005

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: realtime-depl
+  namespace: food
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: realtime
+  template:
+    metadata:
+      labels:
+        app: realtime
+    spec:
+      containers:
+        - name: realtime
+          image: beltawn3507/food_realtime
+          envFrom:
+            - secretRef:
+                name: realtime-secret
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "300m"
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: realtime-srv
+  namespace: food
+spec:
+  selector:
+    app: realtime
+  ports:
+    - name: realtime
+      protocol: TCP
+      port: 5004
+      targetPort: 5004
