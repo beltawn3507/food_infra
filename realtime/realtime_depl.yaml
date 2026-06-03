@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rider-depl
+  name: realtime-depl
   namespace: food
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: rider
+      app: realtime
   template:
     metadata:
       labels:
-        app: rider
+        app: realtime
     spec:
       containers:
-        - name: rider
-          image: beltawn3507/food_rider
+        - name: realtime
+          image: ghcr.io/beltawn3507/food_realtime
           envFrom:
             - secretRef:
-                name: rider-secret
+                name: realtime-secret
           resources:
             requests:
               cpu: "100m"
@@ -30,13 +30,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rider-srv
+  name: realtime-srv
   namespace: food
 spec:
   selector:
-    app: rider
+    app: realtime
   ports:
-    - name: rider
+    - name: realtime
       protocol: TCP
-      port: 5005
-      targetPort: 5005
+      port: 5004
+      targetPort: 5004

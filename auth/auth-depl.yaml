@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: payment-depl
+  name: auth-depl
   namespace: food
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: payment
+      app: auth
   template:
     metadata:
       labels:
-        app: payment
+        app: auth
     spec:
       containers:
-        - name: payment
-          image: beltawn3507/food_payment
+        - name: auth
+          image: ghcr.io/beltawn3507/food_auth
           envFrom:
             - secretRef:
-                name: payment-secret
+                name: auth-secret
           resources:
             requests:
               cpu: "100m"
@@ -29,14 +29,16 @@ spec:
 ---
 apiVersion: v1
 kind: Service
-metadata:
-  name: payment-srv
+metadata: 
+  name: auth-srv
   namespace: food
 spec:
   selector:
-    app: payment
+    app: auth
   ports:
-    - name: payment
+    - name: auth
       protocol: TCP
-      port: 5002
-      targetPort: 5002
+      port: 5000
+      targetPort: 5000
+
+

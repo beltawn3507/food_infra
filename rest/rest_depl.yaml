@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: rest
-          image: beltawn3507/food_rest
+          image: ghcr.io/beltawn3507/food_rest
           envFrom:
             - secretRef:
                 name: rest-secret

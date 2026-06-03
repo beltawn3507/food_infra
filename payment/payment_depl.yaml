@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: realtime-depl
+  name: payment-depl
   namespace: food
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: realtime
+      app: payment
   template:
     metadata:
       labels:
-        app: realtime
+        app: payment
     spec:
       containers:
-        - name: realtime
-          image: beltawn3507/food_realtime
+        - name: payment
+          image: ghcr.io/beltawn3507/food_payment
           envFrom:
             - secretRef:
-                name: realtime-secret
+                name: payment-secret
           resources:
             requests:
               cpu: "100m"
@@ -30,13 +30,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: realtime-srv
+  name: payment-srv
   namespace: food
 spec:
   selector:
-    app: realtime
+    app: payment
   ports:
-    - name: realtime
+    - name: payment
       protocol: TCP
-      port: 5004
-      targetPort: 5004
+      port: 5002
+      targetPort: 5002

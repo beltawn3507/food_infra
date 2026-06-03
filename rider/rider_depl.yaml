@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-depl
+  name: rider-depl
   namespace: food
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth
+      app: rider
   template:
     metadata:
       labels:
-        app: auth
+        app: rider
     spec:
       containers:
-        - name: auth
-          image: beltawn3507/food_auth
+        - name: rider
+          image: ghcr.io/beltawn3507/food_rider
           envFrom:
             - secretRef:
-                name: auth-secret
+                name: rider-secret
           resources:
             requests:
               cpu: "100m"
@@ -29,16 +29,14 @@ spec:
 ---
 apiVersion: v1
 kind: Service
-metadata: 
-  name: auth-srv
+metadata:
+  name: rider-srv
   namespace: food
 spec:
   selector:
-    app: auth
+    app: rider
   ports:
-    - name: auth
+    - name: rider
       protocol: TCP
-      port: 5000
-      targetPort: 5000
-
-
+      port: 5005
+      targetPort: 5005
