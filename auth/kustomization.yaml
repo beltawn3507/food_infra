@@ -7,5 +7,5 @@ resources:
 
 images:
   - name: ghcr.io/beltawn3507/food_auth
-    newTag: 27687aa50e96833c5af77e7e1543bd36f8f3056d
+    newTag: bf6efb441413128c75977def6a7869346360dce6
 
