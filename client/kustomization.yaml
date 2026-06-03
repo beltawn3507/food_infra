@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
   - client-depl.yaml
-  - client-secret.yaml
+ 
 
 images:
   - name: ghcr.io/beltawn3507/food_client

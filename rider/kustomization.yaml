@@ -3,7 +3,6 @@ kind: Kustomization
 
 resources:
   - rider_depl.yaml
-  - rider-secret.yaml
 
 images:
   - name: ghcr.io/beltawn3507/food_rider

@@ -3,7 +3,6 @@ kind: Kustomization
 
 resources:
   - payment_depl.yaml
-  - payment-secret.yaml
 
 images:
   - name: ghcr.io/beltawn3507/food_payment

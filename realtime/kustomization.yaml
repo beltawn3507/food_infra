@@ -3,7 +3,6 @@ kind: Kustomization
 
 resources:
   - realtime_depl.yaml
-  - realtime-secret.yaml
 
 images:
   - name: ghcr.io/beltawn3507/food_realtime

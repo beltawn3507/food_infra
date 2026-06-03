@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: client-app
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/beltawn3507/food_infra.git
+    targetRevision: main
+    path: client   # <-- directory containing deployment.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: food
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

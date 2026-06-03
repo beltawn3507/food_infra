@@ -3,7 +3,6 @@ kind: Kustomization
 
 resources:
   - rest_depl.yaml
-  - rest-secret.yaml
 
 images:
   - name: ghcr.io/beltawn3507/food_rest

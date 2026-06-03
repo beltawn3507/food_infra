@@ -3,8 +3,7 @@ kind: Kustomization
 
 resources:
   - auth-depl.yaml
-  - auth-secrets.yaml
-
+ 
 images:
   - name: ghcr.io/beltawn3507/food_auth
     newTag: 27687aa50e96833c5af77e7e1543bd36f8f3056d
