@@ -6,4 +6,4 @@ resources:
 
 images:
   - name: ghcr.io/beltawn3507/food_payment
-    newTag: bf6efb441413128c75977def6a7869346360dce6
+    newTag: c7ec44a4f017c220d6a2e26560eff43b51d246ef
