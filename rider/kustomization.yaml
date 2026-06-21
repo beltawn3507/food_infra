@@ -6,4 +6,4 @@ resources:
 
 images:
   - name: ghcr.io/beltawn3507/food_rider
-    newTag: c7ec44a4f017c220d6a2e26560eff43b51d246ef
+    newTag: d3eb816f5f5358496f1ce1829141341e3592930f
