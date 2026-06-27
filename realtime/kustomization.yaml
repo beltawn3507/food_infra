@@ -6,4 +6,4 @@ resources:
 
 images:
   - name: ghcr.io/beltawn3507/food_realtime
-    newTag: 51ee9d639f6bbce9a2bfc40586903ee0a87cad14
+    newTag: fb7ca55c9f7cef4531341442492e0b594249a592
