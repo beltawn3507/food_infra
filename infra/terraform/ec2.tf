@@ -43,18 +43,42 @@ resource aws_instance my_instance {
         instance_type = "m7i-flex.large"
         key_name = "new-key"
         vpc_security_group_ids = [aws_security_group.my_security_group.id]
-        user_data = file("${path.module}/bootstrap.sh")
-        user_data_replace_on_change = true
+
         root_block_device {
                 volume_size = 10
                 volume_type = "gp3"
         }
-        tags ={
+  user_data = file("${path.module}/bootstrap.sh")
+        user_data_replace_on_change = true
+  tags ={
                 Name = "food-terra-server"
         }
 }
 
+
 resource "aws_eip" "lb" {
   instance = aws_instance.my_instance.id
   domain   = "vpc"
+}
 
+resource "null_resource" "copy_secrets" {
+
+  depends_on = [
+    aws_eip.lb
+  ]
+  connection {
+    type        = "ssh"
+    host        = aws_eip.lb.public_ip
+    user        = "ubuntu"
+    private_key = file("new-key.pem")
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir -p /home/ubuntu/secrets"
+    ]
+  }
+  provisioner "file" {
+    source      = "secret/"
+    destination = "/home/ubuntu/secrets/"
+  }
+}
