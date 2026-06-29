@@ -43,7 +43,8 @@ resource aws_instance my_instance {
         instance_type = "m7i-flex.large"
         key_name = "new-key"
         vpc_security_group_ids = [aws_security_group.my_security_group.id]
-
+        user_data = file("${path.module}/bootstrap.sh")
+        user_data_replace_on_change = true
         root_block_device {
                 volume_size = 10
                 volume_type = "gp3"
