@@ -21,10 +21,10 @@ spec:
                 name: rest-secret
           resources:
             requests:
-              cpu: "100m"
+              cpu: "400m"
               memory: "128Mi"
             limits:
-              cpu: "300m"
+              cpu: "1000m"
               memory: "256Mi"
 ---
 apiVersion: v1
