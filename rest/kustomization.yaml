@@ -6,4 +6,4 @@ resources:
 
 images:
   - name: ghcr.io/beltawn3507/food_rest
-    newTag: fb7ca55c9f7cef4531341442492e0b594249a592
+    newTag: 0b94e01e6845340e4635f5d1e1be2d349a201d99
