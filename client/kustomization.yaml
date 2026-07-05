@@ -7,4 +7,4 @@ resources:
 
 images:
   - name: ghcr.io/beltawn3507/food_client
-    newTag: bba5f7dbfe5f27fbfe0ad707d908b36438c74250
+    newTag: ec2e15d95e1cc1e428522425db724cd7ea93453b
